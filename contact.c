@@ -1,11 +1,12 @@
 #include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
 
-   
+    //#include<conio.h>
 
+    #include<string.h>
 
+   // #include<process.h>
 
+    #include<stdlib.h>
 
 
 struct contact
@@ -14,63 +15,127 @@ struct contact
 
     long ph;
 
-    char name[20],addr[100],email_id[50];
+    char name[20],add[20],email[30];
 
     }list;
-
-     
-
-    char cho ,query[20],name[20];
+	
+char query[20],name[20];
 
     FILE *fp, *ft;
 
-    int i,n,ch,l,found;
+    int i,n,ch,chr,l,found;
 
 
 
-
-void listcontacts();
-void addcontacts();
-void search();
 
 int main(){
 
-   system("clear");    /* ************Main menu ***********************  */
-
-    printf("\n\t **** Welcome to a0 contact Manager ****");
-
-    printf("\n\n\n\t\t\tMAIN MENU\n\t\t=====================\n\t\t[1] Add a new   Contact\n\t\t[2] List all Contacts\n\t\t[3] Search for contact\n\t\t[0] Exit\n\t\t=================\n\t\t");
+ printf("\n\n\n\t\t\tMAIN MENU\n\t\t=====================\n\t\t[1] Add a new   Contact\n\t\t[2] List all Contacts\n\t\t[3] Search for contact\n\t\t[4] Edit  a Contact\n\t\t[5] Delete a Contact\n\t\t[0] Exit\n\t\t=================\n\t\t");
 
     printf("Enter the choice:");
 
-    scanf("%d",&ch);
+    scanf("%c",&ch);
 
      
 
     switch(ch)
 
     {
-	//char chr;
+	
     case 0:
 
     printf("\n\n\t\tAre you sure u want to exit?");
 
     break;
+
+    /* *********************add new contacts************  */
+
+    case 1:
+
+     
+       addcontact();
+
+    break;
+
+     
+
+    /* *********************list of contacts*************************  */
+
+    case 2:
+
+    viewcontact();
+
+     return;
+
+    break;
+
+     
+
+     
+
+     
+
+    /* *******************search contacts**********************  */
+
+    case 3:
 	
+    search();
+	return;
+    break;
+
+     
+
+     
+
+    /* *********************edit contacts************************/
+
+    case 4:
+	editcontact();
+return;
+
+    break;
+
+     
+
+     
+
+    /* ********************delete contacts**********************/
+
+    case 5:
 	
-	case 1: 
-  	addcontacts();
-	break;
-case 2:
+    delete();
+	return;
+    break;
 
-	listcontacts();
-	break;
+    }
 
-case 3:
+     
 
-	search();
-	break;
-default:
+     
+
+    printf("\n\n\n..Enter the Choice:\n\n\t[1] Main Menu\t\t[0] Exit\n");
+
+    scanf("%c",&chr);
+
+    switch (chr);
+
+    {
+
+    case 1:
+
+    
+	goto funn;
+     
+
+     
+
+    case 0:
+
+    break;
+
+     
+
+    default:
 
     printf("Invalid choice");
 
@@ -80,70 +145,56 @@ default:
 return 0;
 }
 
+funn:
 
+void addcontact()
+{
 
+ 
+    system("clear");
 
-void addcontacts(){
-system("clear");
+    fp=fopen("contact.txt","a");
 
-    fp=fopen("contacts.txt","a");
+    	 fflush(stdin);
+	
+    fflush(stdin);
 
-    for (;;)
+    
 
-    { fflush(stdin);
-
-    printf("enter the name input:");
+    printf("..::Name(Use identical):");
 
     scanf("%s",&list.name);
 
-   // if(strcmp(list.name,"")==0 || strcmp(list.name,"")==0)
+    fflush(stdin);
 
-   // break;
+    printf("..::Phone:");
+
+    scanf("%s",&list.ph);
 
     fflush(stdin);
 
-    printf("Phone:");
-
-    scanf("%ld",&list.ph);
-
-    fflush(stdin);
-
-    printf("address:");
+    printf("..::address:");
 
     scanf("%s",&list.addr);
 
     fflush(stdin);
 
-    printf("email address:");
+    printf("..::email address:");
 
-    scanf("%s",&list.email_id);
-	
-	fwrite(&list,sizeof(list),1,fp);
-	printf("saved");
-fclose(fp);
+    gets(list.email_id);
 
-return;
-   // printf("\n");
+    printf("\n");
 
-	/*fflush(stdin);
-     printf("do you want to continue?(y/n):");
-	scanf("%c",&cho);
-		if(cho=='y' || cho=='Y')
-	
-	if(cho=='N' || cho=='n') */
+    fwrite(&list,sizeof(list),1,fp);
+
+    fclose(fp);
 
 
 
-	//return;
-
-    }
-
-    
-    
 }
 
-void listcontacts()
-{
+
+void viewcontact(){
 
 system("clear");
 
@@ -157,7 +208,7 @@ system("clear");
 
      
 
-    fp=fopen("contacts.txt","r");
+    fp=fopen("contact1.txt","r");
 
     fflush(stdin);
 
@@ -183,7 +234,7 @@ system("clear");
 
     {printf("=========================================================== [%c]-(%d)\n\n",i-32,found);
 
-    return ;}
+    return 0;}
 
     fclose(fp);
 
@@ -191,16 +242,10 @@ system("clear");
 
     }
 
-     
-
-    
-
-}
 
 
+void search(){
 
-void search()
-{
 
 
 system("clear");
@@ -219,7 +264,7 @@ system("clear");
 
     l=strlen(query);
 
-    fp=fopen("contacts.txt","r");
+    fp=fopen("contact1.txt","r");
 
      
 
@@ -251,7 +296,7 @@ system("clear");
 
     printf("..::Press any key to continue...");
 
-    return ;
+    return 0;
     }
 
     }
@@ -276,6 +321,36 @@ system("clear");
 
     }while(ch==1);
 
-    
+}
+
+
+void delete(){
+system("clear");
+
+    fflush(stdin);
+
+    printf("\n\n\t..::DELETE A CONTACT\n\t==========================\n\t..::Enter the name of contact to delete:");
+
+    scanf("%s",&name);
+
+    fp=fopen("contact1.txt","r");
+
+    ft=fopen("temp.txt","w");
+
+    while(fread(&list,sizeof(list),1,fp)!=0)
+
+    if (strcmp(name,list.name)!=0)
+
+    fwrite(&list,sizeof(list),1,ft);
+
+    fclose(fp);
+
+    fclose(ft);
+
+    remove("contact1.txt");
+
+    rename("temp.txt","contact1.txt");
+
+
 
 }
