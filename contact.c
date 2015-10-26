@@ -1,47 +1,72 @@
-#include<stdio.h>
-
-    //#include<conio.h>
+    #include<stdio.h>
 
     #include<string.h>
 
-   // #include<process.h>
 
     #include<stdlib.h>
 
+ 
 
-struct contact
+     
+
+     
+
+     
+
+     
+
+    struct contact
 
     {
 
-    long ph;
+    char ph[100];
 
-    char name[20],add[20],email[30];
+    char name[20],addr[100],email_id[50];
 
     }list;
-	
-char query[20],name[20];
+
+     
+
+    char cho ,query[20],name[20];
 
     FILE *fp, *ft;
 
-    int i,n,ch,chr,l,found;
+    int i,n,ch,l,found;
 
+     
 
+    int main()
 
+    {
 
-int main(){
+     
 
- printf("\n\n\n\t\t\tMAIN MENU\n\t\t=====================\n\t\t[1] Add a new   Contact\n\t\t[2] List all Contacts\n\t\t[3] Search for contact\n\t\t[4] Edit  a Contact\n\t\t[5] Delete a Contact\n\t\t[0] Exit\n\t\t=================\n\t\t");
+     
+
+     
+
+     
+
+    main:
+
+    
+	system("clear");    	
+	/* ************Main menu ***********************  */	
+
+	printf("\n\t **** Welcome to a0 contact Manager ****");
+
+    printf("\n\n\n\t\t\tMAIN MENU\n\t\t=====================\n\t\t[1] Add a newContact\n\t\t[2] List all Contacts\n\t\t[3] Search for contact\n\t\t[4] Edit a Contact\n\t\t[5] Delete a Contact\n\t\t[0] Exit\n\t\t=================\n\t\t");
 
     printf("Enter the choice:");
 
-    scanf("%c",&ch);
+    scanf("%d",&ch);
 
      
 
     switch(ch)
 
     {
-	
+
     case 0:
 
     printf("\n\n\t\tAre you sure u want to exit?");
@@ -53,113 +78,15 @@ int main(){
     case 1:
 
      
-       addcontact();
-
-    break;
-
-     
-
-    /* *********************list of contacts*************************  */
-
-    case 2:
-
-    viewcontact();
-
-     return;
-
-    break;
-
-     
-
-     
-
-     
-
-    /* *******************search contacts**********************  */
-
-    case 3:
-	
-    search();
-	return;
-    break;
-
-     
-
-     
-
-    /* *********************edit contacts************************/
-
-    case 4:
-	editcontact();
-return;
-
-    break;
-
-     
-
-     
-
-    /* ********************delete contacts**********************/
-
-    case 5:
-	
-    delete();
-	return;
-    break;
-
-    }
-
-     
-
-     
-
-    printf("\n\n\n..Enter the Choice:\n\n\t[1] Main Menu\t\t[0] Exit\n");
-
-    scanf("%c",&chr);
-
-    switch (chr);
-
-    {
-
-    case 1:
-
-    
-	goto funn;
-     
-
-     
-
-    case 0:
-
-    break;
-
-     
-
-    default:
-
-    printf("Invalid choice");
-
-    break;
-
-    }
-return 0;
-}
-
-funn:
-
-void addcontact()
-{
-
- 
     system("clear");
 
-    fp=fopen("contact.txt","a");
+    fp=fopen("contact1.txt","a");
 
     	 fflush(stdin);
 	
     fflush(stdin);
 
-    
+    //printf("\n\n..::Editing '%s'\n\n",name);
 
     printf("..::Name(Use identical):");
 
@@ -181,7 +108,7 @@ void addcontact()
 
     printf("..::email address:");
 
-    gets(list.email_id);
+    scanf("%s",&list.email_id);
 
     printf("\n");
 
@@ -190,15 +117,23 @@ void addcontact()
     fclose(fp);
 
 
+     
+    
 
-}
+    break;
 
 
-void viewcontact(){
+    
 
-system("clear");
+     
 
-    printf("\n\t\t================================\n\t\t\tLIST OF CONTACTS\n\t\t================================\n\nName\t\tPhone No\t Address\t\tE-mail ad.\n================================================================\n\n");
+    /* *********************list of contacts*************************  */
+
+    case 2:
+
+    system("clear");
+
+    printf("\n\t\t================================\n\t\t\tLIST OF CONTACTS\n\t\t================================\n\n");
 
      
 
@@ -222,7 +157,7 @@ system("clear");
 
     {
 
-    printf("\nName\t: %s\nPhone\t: %ld\nAddress\t: %s\nEmail\t: %s\n",list.name, list.ph,list.addr,list.email_id);
+    printf("\nName\t: %s\nPhone\t: %s\nAddress\t: %s\nEmail\t: %s\n",list.name, list.ph,list.addr,list.email_id);
 
     found++;
 
@@ -242,13 +177,21 @@ system("clear");
 
     }
 
+     
 
+    break;
 
-void search(){
+     
 
+     
 
+     
 
-system("clear");
+    /* *******************search contacts**********************  */
+
+    case 3:
+
+    system("clear");
 
     do
 
@@ -286,7 +229,7 @@ system("clear");
 
     {
 
-    printf("\n..::Name\t: %s\n..::Phone\t: %ld\n..::Address\t: %s\n..::Email\t:%s\n",list.name,list.ph,list.addr,list.email_id);
+    printf("\n..::Name\t: %s\n..::Phone\t: %s\n..::Address\t: %s\n..::Email\t:%s\n",list.name,list.ph,list.addr,list.email_id);
 
     found++;
 
@@ -321,11 +264,87 @@ system("clear");
 
     }while(ch==1);
 
-}
+    break;
 
+     
 
-void delete(){
-system("clear");
+     
+
+    /* *********************edit contacts************************/
+
+    case 4:
+
+    system("clear");
+
+    fp=fopen("contact1.txt","r");
+
+    ft=fopen("temp.txt","w");
+
+    fflush(stdin);
+
+    printf("..::Edit contact\n===============================\n\n\t..::Enter the name of contact to edit:");
+
+    scanf("%s",name);
+
+    while(fread(&list,sizeof(list),1,fp)==1)
+
+    {
+
+    if(strcmp(name,list.name)!=0)
+
+    fwrite(&list,sizeof(list),1,ft);
+
+    }
+
+    fflush(stdin);
+
+    printf("\n\n..::Editing '%s'\n\n",name);
+
+    printf("..::Name(Use identical):");
+
+    scanf("%s",&list.name);
+
+    fflush(stdin);
+
+    printf("..::Phone:");
+
+    scanf("%s",&list.ph);
+
+    fflush(stdin);
+
+    printf("..::address:");
+
+    scanf("%s",&list.addr);
+
+    fflush(stdin);
+
+    printf("..::email address:");
+
+    scanf("%s",&list.email_id);
+
+    printf("\n");
+
+    fwrite(&list,sizeof(list),1,ft);
+
+    fclose(fp);
+
+    fclose(ft);
+
+    remove("contact1.txt");
+
+    rename("temp.txt","contact1.txt");
+
+    break;
+
+     
+
+     
+
+    /* ********************delete contacts**********************/
+
+    case 5:
+
+    system("clear");
 
     fflush(stdin);
 
@@ -351,6 +370,54 @@ system("clear");
 
     rename("temp.txt","contact1.txt");
 
+    break;
 
+     
 
-}
+    default:
+
+    printf("Invalid choice");
+
+    break;
+
+    }
+
+     
+
+     
+
+    printf("\n\n\n..::Enter the Choice:\n\n\t[1] Main Menu\t\t[0] Exit\n");
+
+    scanf("%d",&ch);
+
+    switch (ch)
+
+    {
+
+    case 1:
+
+    goto main;
+
+     
+
+     
+
+    case 0:
+
+    break;
+
+     
+
+    default:
+
+    printf("Invalid choice");
+
+    break;
+
+    }
+
+     
+
+    return 0;
+
+    }
