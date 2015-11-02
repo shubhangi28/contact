@@ -1,11 +1,14 @@
     #include<stdio.h>
 
+    //#include<conio.h>
+
     #include<string.h>
 
+   // #include<process.h>
 
     #include<stdlib.h>
 
- 
+   // #include<dos.h>
 
      
 
@@ -25,7 +28,7 @@
 
     }list;
 
-     
+     char a[20];int count=0, q,j,temp,c;
 
     char cho ,query[20],name[20];
 
@@ -80,7 +83,7 @@
      
     system("clear");
 
-    fp=fopen("contact1.txt","a");
+    fp=fopen("contact2.txt","a");
 
     	 fflush(stdin);
 	
@@ -137,47 +140,34 @@
 
      
 
-    for(i=97;i<=122;i=i+1)
+    fp=fopen("contact2.txt","r");
+        while(fread(&list,sizeof(list),1,fp))
+        {
+            a[count]=list.name;
+            count++;
+        }
+        c=count;
+        for(q=0;q<count-1;q++){
+		for(j=q+1;j<count;j++)
+            	{
+                	if (strcmp(a[j], a[j + 1]) > 0) {
+            temp = a[j];
+            a[j] = a[j + 1];
+            a[j + 1] = temp;
+            	}
+        }
+      /*  printf("\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<SORTED_DATA>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");*/
+                printf(" Name\t|  phone no\t| Address\t| email ID\t|\n");
 
-    {
+        count=c;
+        for(q=0;q<count;q++){
+		rewind(fp);
+            	while(fread(&list,sizeof(list),1,fp)==1){
+                	if(a[q]==list.name)
+                  		printf("\n|%-10s| %-10s| %-10s\t| %-10s|\n",list.name,list.ph,list.addr ,list.email_id);
+	    	}
 
-     
-
-    fp=fopen("contact1.txt","r");
-
-    fflush(stdin);
-
-    found=0;
-
-    while(fread(&list,sizeof(list),1,fp)==1)
-
-    {
-
-    if(list.name[0]==i || list.name[0]==i-32)
-
-    {
-
-    printf("\nName\t: %s\nPhone\t: %s\nAddress\t: %s\nEmail\t: %s\n",list.name, list.ph,list.addr,list.email_id);
-
-    found++;
-
-    }
-
-    }
-
-    if(found!=0)
-
-    {printf("=========================================================== [%c]-(%d)\n\n",i-32,found);
-
-    return 0;}
-
-    fclose(fp);
-
-     
-
-    }
-
-     
+	}
 
     break;
 
@@ -207,7 +197,7 @@
 
     l=strlen(query);
 
-    fp=fopen("contact1.txt","r");
+    fp=fopen("contact2.txt","r");
 
      
 
@@ -276,7 +266,7 @@
 
     system("clear");
 
-    fp=fopen("contact1.txt","r");
+    fp=fopen("contact2.txt","r");
 
     ft=fopen("temp.txt","w");
 
@@ -330,9 +320,9 @@
 
     fclose(ft);
 
-    remove("contact1.txt");
+    remove("contact2.txt");
 
-    rename("temp.txt","contact1.txt");
+    rename("temp.txt","contact2.txt");
 
     break;
 
@@ -352,8 +342,7 @@
 
     scanf("%s",&name);
 
-    fp=fopen("contact1.txt","r");
-
+    fp=fopen("contact2.txt","r");
     ft=fopen("temp.txt","w");
 
     while(fread(&list,sizeof(list),1,fp)!=0)
@@ -366,9 +355,9 @@
 
     fclose(ft);
 
-    remove("contact1.txt");
+    remove("contact2.txt");
 
-    rename("temp.txt","contact1.txt");
+    rename("temp.txt","contact2.txt");
 
     break;
 
