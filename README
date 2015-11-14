@@ -1,0 +1,8 @@
+project Title: Contact Management
+Name:shubhangi R. Rathod
+MIS.NO:141503012
+
+
+Description of project:
+	Contact_management is a software program that enables user to easily store ,find ,edit,delete and view contact information such as Names of contact, Address, their phone/mobile numbers and email address. It is simple console application without any graphics. It is similar to contact manager in cell phones. You can add, delete,search,edit and view contacts like you do in a cell phone. All contacts are saved in a file.
+	Your contact list is listed in alphabetical order. It also shows number of contacts in your contact list. File handling have been used to store all the data. I have used data stuctures to store names of contact, Address, their phone/mobile numbers and email address.  
